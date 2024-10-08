@@ -1,11 +1,12 @@
 <?php
-// Conexão com o banco de dados
+// Conexão com o banco de dados usando porta 3308 e senha 'etec2024'
 $servername = "localhost";
 $username = "root";
 $password = "etec2024";
 $dbname = "hackathon";
+$port = 3308;
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname, $port);
 
 // Verificar conexão
 if ($conn->connect_error) {
@@ -13,18 +14,27 @@ if ($conn->connect_error) {
 }
 
 // Capturar dados do formulário
-$nome = $_POST['nome'];
-$data_nascimento = $_POST['data_nascimento'];
-$departamento = $_POST['departamento'];
+if (isset($_POST['nome']) && isset($_POST['dataNascimento']) && isset($_POST['departamento'])) {
+    $nome = $_POST['nome'];
+    $dataNascimento = $_POST['dataNascimento'];
+    $departamento = $_POST['departamento'];
 
-// SQL para inserir os dados na tabela funcionários
-$sql = "INSERT INTO funcionarios (nome, data_nascimento, departamento)
-        VALUES ('$nome', '$data_nascimento', '$departamento')";
+    // Verificar se todos os campos estão preenchidos
+    if (!empty($nome) && !empty($dataNascimento) && !empty($departamento)) {
+        // Inserir dados na tabela funcionarios
+        $sql = "INSERT INTO funcionarios (nome, dataNascimento, departamento) 
+                VALUES ('$nome', '$dataNascimento', '$departamento')";
 
-if ($conn->query($sql) === TRUE) {
-    echo "Funcionário cadastrado com sucesso!";
+        if ($conn->query($sql) === TRUE) {
+            echo "Funcionário cadastrado com sucesso!";
+        } else {
+            echo "Erro: " . $sql . "<br>" . $conn->error;
+        }
+    } else {
+        echo "Erro: Todos os campos devem ser preenchidos.";
+    }
 } else {
-    echo "Erro: " . $sql . "<br>" . $conn->error;
+    echo "Erro: Dados não enviados corretamente.";
 }
 
 // Fechar conexão
