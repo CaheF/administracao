@@ -10,13 +10,13 @@
     <form action="cadFuncionario.php" method="POST">
         <label for="nome">Nome:</label><br>
         <input type="text" id="nome" name="nome" required><br><br>
-        
-        <label for="data_nascimento">Data de Nascimento:</label><br>
-        <input type="date" id="data_nascimento" name="data_nascimento" required><br><br>
-        
+
+        <label for="dataNascimento">Data de Nascimento:</label><br>
+        <input type="date" id="dataNascimento" name="dataNascimento" required><br><br>
+
         <label for="departamento">Departamento:</label><br>
         <input type="text" id="departamento" name="departamento" required><br><br>
-        
+
         <input type="submit" value="Cadastrar">
     </form>
 </body>
