@@ -11,7 +11,7 @@ if (isset($_POST['nome']) && isset($_POST['dataNascimento']) && isset($_POST['de
     // Verificar se todos os campos estão preenchidos
     if (!empty($nome) && !empty($dataNascimento) && !empty($departamento)) {
         // Inserir dados na tabela funcionarios
-        $sql = "INSERT INTO funcionarios (nome, data_nascimento, departamento) 
+        $sql = "INSERT INTO funcionarios (nome, dataNascimento, departamento) 
                 VALUES ('$nome', '$dataNascimento', '$departamento')";
 
         if ($conn->query($sql) === TRUE) {
