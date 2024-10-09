@@ -8,30 +8,13 @@
 <body>
     <h2>Registrar Falta</h2>
     <form action="cadFalta.php" method="POST">
-        <label for="id_funcionario">Funcionário:</label><br>
-        <select id="id_funcionario" name="id_funcionario" required>
-            <?php
-            // Conectar ao banco de dados para listar os funcionários
-            $conn = new mysqli("localhost", "root", "", "hackathon");
-            $sql = "SELECT id, nome FROM funcionarios";
-            $result = $conn->query($sql);
+    <label for="idFuncionario">ID do Funcionário:</label><br>
+    <input type="text" id="idFuncionario" name="idFuncionario" required><br><br>
 
-            // Preencher o select com os nomes dos funcionários
-            if ($result->num_rows > 0) {
-                while($row = $result->fetch_assoc()) {
-                    echo "<option value='".$row['id']."'>".$row['nome']."</option>";
-                }
-            } else {
-                echo "<option value=''>Nenhum funcionário encontrado</option>";
-            }
-            $conn->close();
-            ?>
-        </select><br><br>
+    <label for="dataFalta">Data da Falta:</label><br>
+    <input type="date" id="dataFalta" name="dataFalta" required><br><br>
 
-        <label for="data_falta">Data da Falta:</label><br>
-        <input type="date" id="data_falta" name="data_falta" required><br><br>
-
-        <input type="submit" value="Registrar Falta">
-    </form>
+    <input type="submit" value="Cadastrar Falta">
+</form>
 </body>
 </html

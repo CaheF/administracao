@@ -1,17 +1,6 @@
 <?php
-// Conexão com o banco de dados usando porta 3308 e senha 'etec2024'
-$servername = "localhost";
-$username = "root";
-$password = "etec2024";
-$dbname = "hackathon";
-$port = 3308;
-
-$conn = new mysqli($servername, $username, $password, $dbname, $port);
-
-// Verificar conexão
-if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
-}
+// Incluir o arquivo de conexão
+include 'conectar.php';
 
 // Capturar dados do formulário
 if (isset($_POST['nome']) && isset($_POST['dataNascimento']) && isset($_POST['departamento'])) {
@@ -22,7 +11,7 @@ if (isset($_POST['nome']) && isset($_POST['dataNascimento']) && isset($_POST['de
     // Verificar se todos os campos estão preenchidos
     if (!empty($nome) && !empty($dataNascimento) && !empty($departamento)) {
         // Inserir dados na tabela funcionarios
-        $sql = "INSERT INTO funcionarios (nome, dataNascimento, departamento) 
+        $sql = "INSERT INTO funcionarios (nome, data_nascimento, departamento) 
                 VALUES ('$nome', '$dataNascimento', '$departamento')";
 
         if ($conn->query($sql) === TRUE) {

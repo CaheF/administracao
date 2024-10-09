@@ -1,30 +1,23 @@
 <?php
-// Conexão com o banco de dados usando porta 3308 e senha 'etec2024'
-$servername = "localhost";
-$username = "root";
-$password = "etec2024";
-$dbname = "hackathon";
-$port = 3308;
+// Incluir o arquivo de conexão
+include 'conectar.php';
 
-$conn = new mysqli($servername, $username, $password, $dbname, $port);
+var_dump($_POST);
 
-// Verificar conexão
-if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
-}
 
-// Verificar se os campos foram enviados via POST
+// Capturar dados do formulário
 if (isset($_POST['idFuncionario']) && isset($_POST['dataFalta'])) {
     $idFuncionario = $_POST['idFuncionario'];
     $dataFalta = $_POST['dataFalta'];
 
-    // Verificar se os campos não estão vazios
+    // Verificar se todos os campos estão preenchidos
     if (!empty($idFuncionario) && !empty($dataFalta)) {
-        // SQL para inserir os dados na tabela faltas
-        $sql = "INSERT INTO faltas (idFuncionario, dataFalta) VALUES ('$idFuncionario', '$dataFalta')";
+        // Inserir dados na tabela faltas
+        $sql = "INSERT INTO faltas (id_funcionario, data_falta) 
+                VALUES ('$idFuncionario', '$dataFalta')";
 
         if ($conn->query($sql) === TRUE) {
-            echo "Falta registrada com sucesso!";
+            echo "Falta cadastrada com sucesso!";
         } else {
             echo "Erro: " . $sql . "<br>" . $conn->error;
         }
