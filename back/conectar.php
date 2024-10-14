@@ -1,17 +1,14 @@
 <?php
-// Configurações de conexão
-$servername = "localhost";
-$username = "root";
-$password = "etec2024";
-$dbname = "hackathon";
-$port = 3308;
+$servidor = "localhost:3306";
+$user = "root";
+$senha = "tcc";
+$banco = "hackathon";
 
-// Criar conexão
-$conn = new mysqli($servername, $username, $password, $dbname, $port);
+// Cria a conexão
+$conn = new mysqli($servidor, $user, $senha, $banco);
 
-// Verificar conexão
+// Verifica a conexão
 if ($conn->connect_error) {
     die("Falha na conexão: " . $conn->connect_error);
 }
-echo "Conexão bem sucedida!";
 ?>

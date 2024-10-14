@@ -2,9 +2,6 @@
 // Incluir o arquivo de conexão
 include 'conectar.php';
 
-var_dump($_POST);
-
-
 // Capturar dados do formulário
 if (isset($_POST['idFuncionario']) && isset($_POST['dataFalta'])) {
     $idFuncionario = $_POST['idFuncionario'];
