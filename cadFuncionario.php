@@ -6,6 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dataNascimento = $_POST['dataNascimento'];
     $documento = $_POST['documento'];
     $departamento = $_POST['departamento'];
+    $salario = $_POST['salario'];
 
     // Verifica se o funcionário já está cadastrado
     $sql = "SELECT idFuncionario FROM funcionarios WHERE documento = ?";
@@ -18,9 +19,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "<p>Funcionário já cadastrado.</p>";
     } else {
         // Inserir novo funcionário
-        $sql = "INSERT INTO funcionarios (nome, dataNascimento, documento, departamento) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO funcionarios (nome, dataNascimento, documento, departamento, salario) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("ssss", $nome, $dataNascimento, $documento, $departamento);
+        $stmt->bind_param("sssss", $nome, $dataNascimento, $documento, $departamento, $salario);
         $stmt->execute();
         
         // Verifica se o cadastro foi realizado com sucesso
@@ -78,6 +79,9 @@ $conn->close();
                 </option>
             <?php endforeach; ?>
         </select><br><br>
+
+        <label for="salario">Salário:</label><br>
+        <input type="number" step="0.01" id="salario" name="salario" required><br><br>
 
         <input type="submit" value="Cadastrar">
     </form>
