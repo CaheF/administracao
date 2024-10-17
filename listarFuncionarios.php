@@ -13,7 +13,7 @@
                     <th>Nome</th>
                     <th>Data de nascimento</th>
                     <th>Documento</th>
-                    <th>Salario</th>     
+                    <th>Salário</th>     
                 </tr>";
 
     while ($row = $result->fetch_assoc()) {

@@ -44,17 +44,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="CSS/menu.css">
 </head>
 <body>
-    <h2>Registrar Falta</h2>
-    <form action="cadFalta.php" method="POST">
-        <label for="documento">Documento do Funcionário:</label><br>
-        <input type="text" id="documento" name="documento" required><br><br>
+    <div class="container">
+        <h2>Registrar Falta</h2>
+        <form action="cadFalta.php" method="POST">
+            <label for="documento">Documento do Funcionário:</label><br>
+            <input type="text" id="documento" name="documento" required><br><br>
 
-        <label for="dataFalta">Data da Falta:</label><br>
-        <input type="date" id="dataFalta" name="dataFalta" required><br><br>
+            <label for="dataFalta">Data da Falta:</label><br>
+            <input type="date" id="dataFalta" name="dataFalta" required><br><br>
 
-        <input type="submit" value="Cadastrar Falta">
-    </form>
+            <input type="submit" value="Cadastrar Falta">
+        </form>
+    </div>
 </body>
+
 </html>
 <?php
         include('menu.php');
