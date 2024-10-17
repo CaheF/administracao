@@ -1,3 +1,55 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    require('back/conectar.php');
+
+    $nome = $_POST['nome'];
+    $dataNascimento = $_POST['dataNascimento'];
+    $documento = $_POST['documento'];
+    $departamento = $_POST['departamento'];
+
+    // Verifica se o funcionário já está cadastrado
+    $sql = "SELECT idFuncionario FROM funcionarios WHERE documento = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $documento);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        echo "<p>Funcionário já cadastrado.</p>";
+    } else {
+        // Inserir novo funcionário
+        $sql = "INSERT INTO funcionarios (nome, dataNascimento, documento, departamento) VALUES (?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssss", $nome, $dataNascimento, $documento, $departamento);
+        $stmt->execute();
+        
+        // Verifica se o cadastro foi realizado com sucesso
+        if ($stmt->affected_rows > 0) {
+            echo "<p>Funcionário cadastrado com sucesso!</p>";
+        } else {
+            echo "<p>Erro ao realizar o cadastro.</p>";
+        }
+        $stmt->close();
+    }
+
+    // Fechar a conexão com o banco de dados
+    $conn->close();
+}
+
+// Obter a lista de departamentos
+require('back/conectar.php');
+$departamentos = [];
+$sql = "SELECT idDepartamento, nome FROM departamento";
+$result = $conn->query($sql);
+
+if ($result) {
+    while ($row = $result->fetch_assoc()) {
+        $departamentos[] = $row;
+    }
+}
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -14,8 +66,18 @@
         <label for="dataNascimento">Data de Nascimento:</label><br>
         <input type="date" id="dataNascimento" name="dataNascimento" required><br><br>
 
+        <label for="documento">Documento (RG ou CPF):</label><br>
+        <input type="text" id="documento" name="documento" required><br><br>
+
         <label for="departamento">Departamento:</label><br>
-        <input type="text" id="departamento" name="departamento" required><br><br>
+        <select id="departamento" name="departamento" required>
+            <option value="">Selecione um departamento</option>
+            <?php foreach ($departamentos as $dep): ?>
+                <option value="<?php echo $dep['idDepartamento']; ?>">
+                    <?php echo htmlspecialchars($dep['nome']); ?>
+                </option>
+            <?php endforeach; ?>
+        </select><br><br>
 
         <input type="submit" value="Cadastrar">
     </form>

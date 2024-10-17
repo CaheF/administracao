@@ -1,3 +1,42 @@
+<?php
+include 'back/conectar.php'; // Conexão com o banco de dados
+
+// Processa o formulário quando enviado
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nomeFuncionario = $_POST['nomeFuncionario'];
+    $departamento = $_POST['departamento'];
+    $dataFolga = $_POST['dataFolga'];
+    $motivo = $_POST['motivo'] ?? null;
+
+    // Buscar o ID do funcionário pelo nome e departamento
+    $sql = "SELECT idFuncionario FROM funcionarios WHERE nome = ? AND departamento = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $nomeFuncionario, $departamento);
+    $stmt->execute();
+    $stmt->bind_result($idFuncionario);
+    $stmt->fetch();
+    $stmt->close();
+
+    if ($idFuncionario) {
+        // Inserir a folga no banco de dados
+        $sql = "INSERT INTO folga (idFuncionario, dataFolga, motivo) VALUES (?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("iss", $idFuncionario, $dataFolga, $motivo);
+
+        if ($stmt->execute()) {
+            $message = "Folga cadastrada com sucesso!";
+        } else {
+            $message = "Erro ao cadastrar folga: " . $stmt->error;
+        }
+        $stmt->close();
+    } else {
+        $message = "Funcionário não encontrado.";
+    }
+
+    $conn->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -46,14 +85,22 @@
         button:hover {
             background-color: #45a049;
         }
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            color: #4CAF50;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Cadastro de Folga</h2>
-        <form action="cadastrarFolga.php" method="POST">
-            <label for="idFuncionario">ID do Funcionário:</label>
-            <input type="number" name="idFuncionario" id="idFuncionario" required>
+        <form action="" method="POST">
+            <label for="nomeFuncionario">Nome do Funcionário:</label>
+            <input type="text" name="nomeFuncionario" id="nomeFuncionario" required>
+
+            <label for="departamento">Departamento:</label>
+            <input type="text" name="departamento" id="departamento" required>
 
             <label for="dataFolga">Data da Folga:</label>
             <input type="date" name="dataFolga" id="dataFolga" required>
@@ -63,6 +110,9 @@
 
             <button type="submit">Cadastrar Folga</button>
         </form>
+        <?php if (isset($message)): ?>
+            <div class="message"><?php echo $message; ?></div>
+        <?php endif; ?>
     </div>
 </body>
 </html>
