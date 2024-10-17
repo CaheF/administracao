@@ -4,45 +4,7 @@ body {
     margin: 0;
     padding: 0;
 }
-.container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
-}
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-}
-input, button {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-button:hover {
-    background-color: #45a049;
-}
-.result {
-    margin-top: 20px;
-    font-weight: bold;
-    text-align: center;
-}
 
-/* menu */
 .navbar {
     background-color: #4CAF50;
     padding: 15px;
@@ -52,52 +14,74 @@ button:hover {
     width: 100%;
     z-index: 1000;
 }
+
 .navbar a {
     color: white;
     padding: 14px 20px;
     text-decoration: none;
     margin: 0 10px;
 }
+
 .navbar a:hover {
     background-color: #45a049;
 }
+
 .container {
     max-width: 600px;
-    margin: 80px auto; /* Adiciona margem superior para não sobrepor o menu */
+    margin: 80px auto; /* Mantém a margem para não sobrepor o menu */
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 h2 {
     text-align: center;
     margin-bottom: 20px;
 }
+
 label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
 }
+
 input, button {
-    width: 95%;
+    width: 95%; /* Mantém 95% para consistência */
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
 button {
     background-color: #4CAF50;
     color: white;
-    width: 100%;
-    padding: 10px;
     border: none;
     cursor: pointer;
 }
+
 button:hover {
     background-color: #45a049;
 }
+
+/* Estilo para mensagens de resultado */
 .result {
-    margin-top: 20px;
+    margin-top: 20px; /* Espaçamento acima da mensagem */
     font-weight: bold;
     text-align: center;
+}
+
+.result p {
+    margin: 10px 0; /* Espaçamento entre mensagens */
+}
+
+/* Estilo para mensagens de erro */
+.result p.error {
+    color: red; /* Cor do texto de erro */
+}
+
+/* Estilo para mensagens de sucesso */
+.result p.success {
+    color: green; /* Cor do texto de sucesso */
 }

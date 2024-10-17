@@ -38,6 +38,7 @@ form {
 label {
     color: #555;
     font-size: 16px;
+    margin-bottom: 5px; /* Adiciona um espaço entre o label e o input */
 }
 
 input[type="text"],
@@ -74,6 +75,7 @@ nav {
     padding: 10px 0;
     position: absolute;
     top: 0;
+    z-index: 1000; /* Garante que o menu fique acima de outros elementos */
 }
 
 nav a {

@@ -1,4 +1,6 @@
 <?php
+$message = ''; // Variável para armazenar mensagens
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require('back/conectar.php');
 
@@ -16,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        echo "<p>Funcionário já cadastrado.</p>";
+        $message = "<p class='result error'>Funcionário já cadastrado.</p>";
     } else {
         // Inserir novo funcionário
         $sql = "INSERT INTO funcionarios (nome, dataNascimento, documento, departamento, salario) VALUES (?, ?, ?, ?, ?)";
@@ -26,9 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         // Verifica se o cadastro foi realizado com sucesso
         if ($stmt->affected_rows > 0) {
-            echo "<p>Funcionário cadastrado com sucesso!</p>";
+            $message = "<p class='result success'>Funcionário cadastrado com sucesso!</p>";
         } else {
-            echo "<p>Erro ao realizar o cadastro.</p>";
+            $message = "<p class='result error'>Erro ao realizar o cadastro.</p>";
         }
         $stmt->close();
     }
@@ -62,17 +64,23 @@ $conn->close();
 </head>
 <body>
     <h2>Cadastro de Funcionários</h2>
+    
+    <!-- Exibir a mensagem aqui -->
+    <?php if ($message): ?>
+        <div><?php echo $message; ?></div>
+    <?php endif; ?>
+
     <form action="cadFuncionario.php" method="POST">
-        <label for="nome">Nome:</label><br>
-        <input type="text" id="nome" name="nome" required><br><br>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
 
-        <label for="dataNascimento">Data de Nascimento:</label><br>
-        <input type="date" id="dataNascimento" name="dataNascimento" required><br><br>
+        <label for="dataNascimento">Data de Nascimento:</label>
+        <input type="date" id="dataNascimento" name="dataNascimento" required>
 
-        <label for="documento">Documento (RG ou CPF):</label><br>
-        <input type="text" id="documento" name="documento" required><br><br>
+        <label for="documento">Documento (RG ou CPF):</label>
+        <input type="text" id="documento" name="documento" required>
 
-        <label for="departamento">Departamento:</label><br>
+        <label for="departamento">Departamento:</label>
         <select id="departamento" name="departamento" required>
             <option value="">Selecione um departamento</option>
             <?php foreach ($departamentos as $dep): ?>
@@ -80,10 +88,10 @@ $conn->close();
                     <?php echo htmlspecialchars($dep['nome']); ?>
                 </option>
             <?php endforeach; ?>
-        </select><br><br>
+        </select>
 
-        <label for="salario">Salário:</label><br>
-        <input type="number" step="0.01" id="salario" name="salario" required><br><br>
+        <label for="salario">Salário:</label>
+        <input type="number" step="0.01" id="salario" name="salario" required>
 
         <input type="submit" value="Cadastrar">
     </form>
@@ -91,5 +99,5 @@ $conn->close();
 </html>
 
 <?php
-    include('menu.php');
+include('menu.php');
 ?>

@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     <div class="container">
-        <h2>Cadastro de Folga</h2>
+        <h2>Registrar Folga</h2>
         <form action="" method="POST">
             <label for="nomeFuncionario">Nome do Funcionário:</label>
             <input type="text" name="nomeFuncionario" id="nomeFuncionario" required>

@@ -47,3 +47,9 @@
 .tabela table {
     border: 1px solid #ccc; /* Borda externa da tabela */
 }
+
+.tabela h2 {
+    text-align: center; /* Centraliza o título */
+    margin-bottom: 20px; /* Espaço abaixo do título */
+    color: #333; /* Cor do texto */
+}

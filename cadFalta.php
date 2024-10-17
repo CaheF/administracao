@@ -7,30 +7,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Obter o ID do funcionário com base no documento
     $sql = "SELECT idFuncionario FROM funcionarios WHERE documento = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $documento);
-    $stmt->execute();
-    $stmt->store_result();
+    $stmt1 = $conn->prepare($sql); // Use uma nova variável para a primeira declaração
+    $stmt1->bind_param("s", $documento);
+    $stmt1->execute();
+    $stmt1->store_result();
 
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($idFuncionario);
-        $stmt->fetch();
+    if ($stmt1->num_rows > 0) {
+        $stmt1->bind_result($idFuncionario);
+        $stmt1->fetch();
 
         // Inserir a falta na tabela
         $sql = "INSERT INTO faltas (idFuncionario, dataFalta) VALUES (?, ?)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("is", $idFuncionario, $dataFalta);
-        if ($stmt->execute()) {
-            echo "<p>Falta registrada com sucesso!</p>";
+        $stmt2 = $conn->prepare($sql); // Use uma nova variável para a segunda declaração
+        $stmt2->bind_param("is", $idFuncionario, $dataFalta);
+        if ($stmt2->execute()) {
+            $message = "<p style='color: green;'>Falta registrada com sucesso!</p>";
         } else {
-            echo "<p>Erro ao registrar falta: " . $stmt->error . "</p>";
+            $message = "<p style='color: red;'>Erro ao registrar falta: " . $stmt2->error . "</p>";
         }
+
+        $stmt2->close(); // Feche a segunda declaração aqui
     } else {
-        echo "<p>Funcionário não encontrado.</p>";
+        $message = "<p style='color: red;'>Funcionário não encontrado.</p>";
     }
 
-    $stmt->close();
-    $conn->close();
+    $stmt1->close(); // Feche a primeira declaração aqui
+    $conn->close(); // Feche a conexão
 }
 ?>
 
@@ -44,21 +46,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="CSS/menu.css">
 </head>
 <body>
+    <nav>
+        <?php include('menu.php'); ?>
+    </nav>
+    
     <div class="container">
         <h2>Registrar Falta</h2>
         <form action="cadFalta.php" method="POST">
-            <label for="documento">Documento do Funcionário:</label><br>
-            <input type="text" id="documento" name="documento" required><br><br>
+            <label for="documento">Documento do Funcionário:</label>
+            <input type="text" id="documento" name="documento" required>
 
-            <label for="dataFalta">Data da Falta:</label><br>
-            <input type="date" id="dataFalta" name="dataFalta" required><br><br>
+            <label for="dataFalta">Data da Falta:</label>
+            <input type="date" id="dataFalta" name="dataFalta" required>
 
-            <input type="submit" value="Cadastrar Falta">
+            <input type="submit" value="Registrar Falta">
         </form>
+
+        <?php
+        // Exibir mensagens de erro ou sucesso
+        if (isset($message)) {
+            echo $message;
+        }
+        ?>
     </div>
 </body>
-
 </html>
-<?php
-        include('menu.php');
-?>
