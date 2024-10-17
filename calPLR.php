@@ -1,5 +1,6 @@
 <?php
 include ('back/conectar.php'); // Conexão com o banco de dados
+include ('menu.php'); // Inclui o menu
 
 function calcularPLR($idFuncionario, $percentual = 0.65) {
     global $conn;
@@ -55,18 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/menu.css">
     <title>Cálculo de PLR</title>
-
+    <link rel="stylesheet" href="CSS/menu.css">
 </head>
 <body>
-<div class="navbar">
-        <a href="calcularPLR.php">Cálculo de PLR</a>
-        <a href="cadFuncionario.php">Cadastro de Funcionários</a>
-        <a href="cadFalta.php">Registrar Falta</a>
-        <a href="listarFuncionarios.php">Listar Funcionários</a>
-    </div>
-
     <div class="container">
         <h2>Cálculo de PLR</h2>
         <form method="POST">
@@ -88,6 +81,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         <?php endif; ?>
     </div>
-
 </body>
 </html>

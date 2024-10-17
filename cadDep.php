@@ -1,5 +1,6 @@
 <?php
 include ('back/conectar.php'); // Conexão com o banco de dados
+include ('menu.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nome = $_POST['nome'];
@@ -33,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Departamentos</title>
     <link rel="stylesheet" href="CSS/cadDep.css">
+    <link rel="stylesheet" href="CSS/menu.css">
 </head>
 <body>
     <div class="container">

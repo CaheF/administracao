@@ -1,5 +1,5 @@
 <?php
-include 'back/conectar.php'; // Conexão com o banco de dados
+include ('back/conectar.php'); // Conexão com o banco de dados
 
 // Processa o formulário quando enviado
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -43,6 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Folgas</title>
+    <link rel="stylesheet" href="CSS/menu.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -116,3 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </body>
 </html>
+
+<?php
+    include('menu.php');
+?>

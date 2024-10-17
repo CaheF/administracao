@@ -57,6 +57,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Funcionários</title>
+    <link rel="stylesheet" href="CSS/menu.css">
 </head>
 <body>
     <h2>Cadastro de Funcionários</h2>
@@ -87,3 +88,7 @@ $conn->close();
     </form>
 </body>
 </html>
+
+<?php
+    include('menu.php');
+?>

@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Faltas</title>
-    <link rel="stylesheet" href="CSS/cadFalta.css">
+    <link rel="stylesheet" href="CSS/menu.css">
 </head>
 <body>
     <h2>Registrar Falta</h2>
@@ -55,3 +55,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 </body>
 </html>
+<?php
+        include('menu.php');
+?>
