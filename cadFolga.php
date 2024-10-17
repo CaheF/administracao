@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Folgas</title>
     <link rel="stylesheet" href="CSS/menu.css">
+    <link rel="stylesheet" href="CSS/cadFolga.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -71,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             font-weight: bold;
         }
         input, button {
-            width: 100%;
+            width: 95%;
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
@@ -80,6 +81,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         button {
             background-color: #4CAF50;
             color: white;
+            width: 100%;
+            padding: 10px;
             border: none;
             cursor: pointer;
         }
