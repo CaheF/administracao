@@ -49,7 +49,7 @@ $resultDepartamentos = $conn->query($sqlDepartamentos);
     <title>Cadastro de Folgas</title>
     <link rel="stylesheet" href="CSS/menu.css">
     <link rel="stylesheet" href="CSS/cadFolga.css">
-    <link rel="icon" href="images/pngMaleta.webp">
+    <link rel="icon" href="images/pngMaleta.png">
     <style>
         body {
             font-family: Arial, sans-serif;

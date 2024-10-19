@@ -61,7 +61,7 @@ $conn->close();
     <title>Cadastro de Funcionários</title>
     <link rel="stylesheet" href="CSS/menu.css">
     <link rel="stylesheet" href="CSS/cadFuncionario.css">
-    <link rel="icon" href="images/pngMaleta.webp">
+    <link rel="icon" href="images/pngMaleta.png">
 </head>
 <body>
     <h2>Cadastro de Funcionários</h2>

@@ -1,91 +1,98 @@
-/* Estilo geral */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Garante centralização vertical */
 }
 
-/* Contêiner para alinhar título e formulário */
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Cabeçalho */
-h2 {
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* Formulário */
-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
-}
-
-/* Inputs do formulário */
-label {
-    color: #555;
-    font-size: 16px;
-    margin-bottom: 5px; /* Adiciona um espaço entre o label e o input */
-}
-
-input[type="text"],
-input[type="date"] {
-    width: 100%;
-    padding: 10px;
-    margin: 10px 0 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    box-sizing: border-box;
-}
-
-/* Botão de submissão */
-input[type="submit"] {
+.navbar {
     background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
+    padding: 15px;
+    text-align: center;
+    position: fixed;
+    top: 0;
     width: 100%;
+    z-index: 1000;
 }
 
-input[type="submit"]:hover {
+.navbar a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.navbar a:hover {
     background-color: #45a049;
 }
 
-/* Menu */
-nav {
-    width: 100%;
-    background-color: #333;
-    padding: 10px 0;
-    position: absolute;
-    top: 0;
-    z-index: 1000; /* Garante que o menu fique acima de outros elementos */
+.container {
+    max-width: 600px;
+    margin: 80px auto; /* Mantém a margem para não sobrepor o menu */
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-nav a {
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+input {
+    width: 95%; /* Mantém 95% para consistência */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Estilo do botão */
+input[type="submit"] {
+    background-color: #4CAF50;
     color: white;
-    text-decoration: none;
-    padding: 14px 20px;
-    display: inline-block;
+    border: none;
+    cursor: pointer;
+    padding: 12px 20px; /* Ajuste do padding para melhor aparência */
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Transição suave */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049; /* Cor ao passar o mouse */
+    transform: translateY(-2px); /* Efeito de elevação */
+}
+
+input[type="submit"]:active {
+    transform: translateY(1px); /* Efeito de depressão */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra ao pressionar */
+}
+
+.result {
+    margin-top: 20px; /* Espaçamento acima da mensagem */
+    font-weight: bold;
     text-align: center;
 }
 
-nav a:hover {
-    background-color: #575757;
+.result p {
+    margin: 10px 0; /* Espaçamento entre mensagens */
+}
+
+/* Estilo para mensagens de erro */
+.result p.error {
+    color: red; /* Cor do texto de erro */
+}
+
+/* Estilo para mensagens de sucesso */
+.result p.success {
+    color: green; /* Cor do texto de sucesso */
 }

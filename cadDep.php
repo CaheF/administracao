@@ -1,6 +1,5 @@
 <?php
 include ('back/conectar.php'); // Conexão com o banco de dados
-include ('menu.php');
 
 $resultMessage = ''; // Inicializa a variável para a mensagem
 
@@ -56,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Cadastro de Departamentos</title>
     <link rel="stylesheet" href="CSS/cadDep.css">
     <link rel="stylesheet" href="CSS/menu.css">
-    <link rel="icon" href="images/pngMaleta.webp">
+    <link rel="icon" href="images/maleta2.png">
 </head>
 <body>
     <div class="container">
@@ -75,3 +74,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </body>
 </html>
+<?php
+    include('menu.php');
+?>

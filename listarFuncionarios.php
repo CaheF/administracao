@@ -1,6 +1,5 @@
 <?php
 include('back/conectar.php');
-include('menu.php');
 
 echo "<div class='tabela'>";
 echo "<h2>Lista de Funcionários</h2>"; // Título da lista de funcionários
@@ -55,9 +54,11 @@ $conn->close();
     <title>Funcionários</title>
     <link rel="stylesheet" href="CSS/menu.css">
     <link rel="stylesheet" href="CSS/listFun.css">
-    <link rel="icon" href="images/pngMaleta.webp">
+    <link rel="icon" href="images/pngMaleta.png">
 </head>
-<body>
-    
+<body>    
 </body>
 </html>
+<?php
+    include('menu.php');
+?>
