@@ -56,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Cadastro de Departamentos</title>
     <link rel="stylesheet" href="CSS/cadDep.css">
     <link rel="stylesheet" href="CSS/menu.css">
+    <link rel="icon" href="images/pngMaleta.webp">
 </head>
 <body>
     <div class="container">

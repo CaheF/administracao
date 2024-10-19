@@ -44,6 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Cadastro de Faltas</title>
     <link rel="stylesheet" href="CSS/cadFalta.css">
     <link rel="stylesheet" href="CSS/menu.css">
+    <link rel="icon" href="images/pngMaleta.webp">
 </head>
 <body>
     <nav>

@@ -33,8 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $message = "Funcionário não encontrado.";
     }
 
-    $conn->close();
+
 }
+
+// Buscar os departamentos do banco de dados
+$sqlDepartamentos = "SELECT idDepartamento, nome FROM departamento";
+$resultDepartamentos = $conn->query($sqlDepartamentos);
 ?>
 
 <!DOCTYPE html>
@@ -45,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Cadastro de Folgas</title>
     <link rel="stylesheet" href="CSS/menu.css">
     <link rel="stylesheet" href="CSS/cadFolga.css">
+    <link rel="icon" href="images/pngMaleta.webp">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -71,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             margin-bottom: 8px;
             font-weight: bold;
         }
-        input, button {
+        input, select, button {
             width: 95%;
             padding: 10px;
             margin-bottom: 15px;
@@ -104,7 +109,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="text" name="nomeFuncionario" id="nomeFuncionario" required>
 
             <label for="departamento">Departamento:</label>
-            <input type="text" name="departamento" id="departamento" required>
+            <select name="departamento" id="departamento" required>
+                <option value="">Selecione o Departamento</option>
+                <?php
+                // Loop para listar todos os departamentos disponíveis
+                if ($resultDepartamentos->num_rows > 0) {
+                    while($row = $resultDepartamentos->fetch_assoc()) {
+                        echo "<option value='".$row['idDepartamento']."'>".$row['nome']."</option>";
+                    }
+                } else {
+                    echo "<option value=''>Nenhum departamento encontrado</option>";
+                }
+                ?>
+            </select>
 
             <label for="dataFolga">Data da Folga:</label>
             <input type="date" name="dataFolga" id="dataFolga" required>

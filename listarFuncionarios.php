@@ -4,33 +4,41 @@ include('menu.php');
 
 echo "<div class='tabela'>";
 echo "<h2>Lista de Funcionários</h2>"; // Título da lista de funcionários
-$sql = "SELECT * FROM funcionarios";
+$sql = "SELECT f.nome, f.documento, d.nome AS departamento, f.dataNasc, f.salario,
+        COUNT(DISTINCT ft.idFolga) AS folga,
+        COUNT(DISTINCT fa.idFaltas) AS faltas
+        FROM funcionarios f
+        LEFT JOIN folga ft ON f.idFuncionario = ft.idFuncionario
+        LEFT JOIN faltas fa ON f.idFuncionario = fa.idFuncionario
+        LEFT JOIN departamento d ON f.departamento = d.idDepartamento
+        GROUP BY f.idFuncionario";
 $result = $conn->query($sql);
 
 if($result->num_rows > 0) {
     echo  "<table border ='1'>
             <tr>
-                <th>ID</th>
                 <th>Nome</th>
-                <th>Data de Nascimento</th>
-                <th>Departamento</th>
                 <th>Documento</th>
-                <th>Salário</th>     
+                <th>Departamento</th>
+                <th>Data de Nascimento</th>
+                <th>Salário</th>
+                <th>Faltas</th>     
+                <th>Folgas</th>
             </tr>";
 
-    while ($row = $result->fetch_assoc()) {
-        // Verificar se 'dataNasc' está definida antes de exibir
-        $dataNasc = isset($row["dataNasc"]) ? $row["dataNasc"] : 'N/A';
-
-        echo "<tr> 
-                <td>" . $row["idFuncionario"] . "</td>
-                <td>" . $row["nome"] . "</td>
-                <td>" . $row["dataNascimento"] . "</td>
-                <td>" . $row["departamento"] . "</td>
-                <td>" . $row["documento"] . "</td>
-                <td>" . $row["salario"] . "</td> 
-            </tr>";
-    }
+            while ($row = $result->fetch_assoc()) {
+                $dataNasc = isset($row["dataNasc"]) ? $row["dataNasc"] : 'N/A';
+            
+                echo "<tr> 
+                        <td>" . $row["nome"] . "</td>
+                        <td>" . $row["documento"] . "</td>
+                        <td>" . $row["departamento"] . "</td> <!-- Mostrando o nome do departamento -->
+                        <td>" . $dataNasc . "</td>
+                        <td>" . $row["salario"] . "</td> 
+                        <td>" . $row["faltas"] . "</td>
+                        <td>" . $row["folga"] . "</td>
+                    </tr>";
+            }
     echo "</table>";
 } else {
     echo "Nenhum funcionário encontrado.";
@@ -47,6 +55,7 @@ $conn->close();
     <title>Funcionários</title>
     <link rel="stylesheet" href="CSS/menu.css">
     <link rel="stylesheet" href="CSS/listFun.css">
+    <link rel="icon" href="images/pngMaleta.webp">
 </head>
 <body>
     

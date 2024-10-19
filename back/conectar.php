@@ -1,7 +1,7 @@
 <?php
-$servidor = "localhost:3308";
+$servidor = "localhost:3306";
 $user = "root";
-$senha = "etec2024";
+$senha = "etec2023";
 $banco = "hackathon";
 
 // Cria a conexão

@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require('back/conectar.php');
 
     $nome = $_POST['nome'];
-    $dataNascimento = $_POST['dataNascimento'];
+    $dataNasc = $_POST['dataNasc'];
     $documento = $_POST['documento'];
     $departamento = $_POST['departamento'];
     $salario = $_POST['salario'];
@@ -21,9 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $message = "<p class='result error'>Funcionário já cadastrado.</p>";
     } else {
         // Inserir novo funcionário
-        $sql = "INSERT INTO funcionarios (nome, dataNascimento, documento, departamento, salario) VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO funcionarios (nome, dataNasc, documento, departamento, salario) VALUES (?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssss", $nome, $dataNascimento, $documento, $departamento, $salario);
+        $stmt->bind_param("sssss", $nome, $dataNasc, $documento, $departamento, $salario);
         $stmt->execute();
         
         // Verifica se o cadastro foi realizado com sucesso
@@ -61,6 +61,7 @@ $conn->close();
     <title>Cadastro de Funcionários</title>
     <link rel="stylesheet" href="CSS/menu.css">
     <link rel="stylesheet" href="CSS/cadFuncionario.css">
+    <link rel="icon" href="images/pngMaleta.webp">
 </head>
 <body>
     <h2>Cadastro de Funcionários</h2>
@@ -74,8 +75,8 @@ $conn->close();
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
 
-        <label for="dataNascimento">Data de Nascimento:</label>
-        <input type="date" id="dataNascimento" name="dataNascimento" required>
+        <label for="dataNasc">Data de Nascimento:</label>
+        <input type="date" id="dataNascimento" name="dataNasc" required>
 
         <label for="documento">Documento (RG ou CPF):</label>
         <input type="text" id="documento" name="documento" required>
