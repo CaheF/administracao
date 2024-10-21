@@ -54,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Departamentos</title>
     <link rel="stylesheet" href="CSS/cadDep.css">
-    <link rel="stylesheet" href="CSS/menu.css">
     <link rel="icon" href="images/maleta2.png">
 </head>
 <body>

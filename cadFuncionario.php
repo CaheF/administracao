@@ -64,7 +64,7 @@ $conn->close();
     <link rel="icon" href="images/pngMaleta.png">
 </head>
 <body>
-    <h2>Cadastro de Funcionários</h2>
+    
     
     <!-- Exibir a mensagem aqui -->
     <?php if ($message): ?>
@@ -72,6 +72,7 @@ $conn->close();
     <?php endif; ?>
 
     <form action="cadFuncionario.php" method="POST">
+    <h2>Cadastro de Funcionários</h2>
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" required>
 
