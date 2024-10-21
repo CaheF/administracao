@@ -5,7 +5,7 @@ echo "<div class='tabela'>";
 echo "<h2>Lista de Funcionários</h2>"; // Título da lista de funcionários
 $sql = "SELECT f.nome, f.documento, d.nome AS departamento, f.dataNasc, f.salario,
         COUNT(DISTINCT ft.idFolga) AS folga,
-        COUNT(DISTINCT fa.idFaltas) AS faltas
+        COUNT(DISTINCT fa.idFalta) AS faltas
         FROM funcionarios f
         LEFT JOIN folga ft ON f.idFuncionario = ft.idFuncionario
         LEFT JOIN faltas fa ON f.idFuncionario = fa.idFuncionario
@@ -25,19 +25,19 @@ if($result->num_rows > 0) {
                 <th>Folgas</th>
             </tr>";
 
-            while ($row = $result->fetch_assoc()) {
-                $dataNasc = isset($row["dataNasc"]) ? $row["dataNasc"] : 'N/A';
-            
-                echo "<tr> 
-                        <td>" . $row["nome"] . "</td>
-                        <td>" . $row["documento"] . "</td>
-                        <td>" . $row["departamento"] . "</td> <!-- Mostrando o nome do departamento -->
-                        <td>" . $dataNasc . "</td>
-                        <td>" . $row["salario"] . "</td> 
-                        <td>" . $row["faltas"] . "</td>
-                        <td>" . $row["folga"] . "</td>
-                    </tr>";
-            }
+    while ($row = $result->fetch_assoc()) {
+        $dataNasc = isset($row["dataNasc"]) ? $row["dataNasc"] : 'N/A'; // Usando a coluna 'dataNasc'
+        
+        echo "<tr> 
+                <td>" . $row["nome"] . "</td>
+                <td>" . $row["documento"] . "</td>
+                <td>" . $row["departamento"] . "</td> <!-- Mostrando o nome do departamento -->
+                <td>" . $dataNasc . "</td>
+                <td>" . "R$: " . $row["salario"] . "</td> 
+                <td>" . $row["faltas"] . " faltas" . "</td>
+                <td>" . $row["folga"] . " folgas" . "</td>
+            </tr>";
+    }
     echo "</table>";
 } else {
     echo "Nenhum funcionário encontrado.";
@@ -59,6 +59,7 @@ $conn->close();
 <body>    
 </body>
 </html>
+
 <?php
     include('menu.php');
 ?>

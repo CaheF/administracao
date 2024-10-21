@@ -64,12 +64,6 @@ $conn->close();
     <link rel="icon" href="images/pngMaleta.png">
 </head>
 <body>
-    
-    
-    <!-- Exibir a mensagem aqui -->
-    <?php if ($message): ?>
-        <div><?php echo $message; ?></div>
-    <?php endif; ?>
 
     <form action="cadFuncionario.php" method="POST">
     <h2>Cadastro de Funcionários</h2>
@@ -77,7 +71,7 @@ $conn->close();
         <input type="text" id="nome" name="nome" required>
 
         <label for="dataNasc">Data de Nascimento:</label>
-        <input type="date" id="dataNascimento" name="dataNasc" required>
+        <input type="date" id="dataNasc" name="dataNasc" required>
 
         <label for="documento">Documento (RG ou CPF):</label>
         <input type="text" id="documento" name="documento" required>
@@ -96,6 +90,10 @@ $conn->close();
         <input type="number" step="0.01" id="salario" name="salario" required>
 
         <input type="submit" value="Cadastrar">
+           <!-- Exibir a mensagem aqui -->
+    <?php if ($message): ?>
+        <div><?php echo $message; ?></div>
+    <?php endif; ?>
     </form>
 </body>
 </html>
